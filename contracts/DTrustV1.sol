@@ -198,8 +198,9 @@ contract DTRUST {
         address[] memory, 
         address[] memory,
         uint256,
-        uint256
+        uint256,
+        bool
     ) {
-        return (name, settlor, trustees, beneficiaries, dateCreated, startFeeTime);
+        return (name, settlor, trustees, beneficiaries, dateCreated, startFeeTime, isRevoked);
     }
 }
