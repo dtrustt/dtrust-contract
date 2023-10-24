@@ -24,7 +24,7 @@ contract DTRUST {
     
     mapping(address => bool) trusteesLookup;
     mapping(address => bool) beneficiariesLookup;
-    mapping(address => bool) revokeAddressLookup;
+    mapping(address => bool) public revokeAddressLookup;
     mapping(address => bool) tokenLookup;
 
     uint256 etherBalance = 0;
@@ -165,7 +165,7 @@ contract DTRUST {
         }
     }
 
-    function removeRevokableAddress() external {
+    function removeRevokableAddress() external isActive {
         require(revokeAddressLookup[msg.sender] == true, "Address is not revokable");
         revokeAddressLookup[msg.sender] = false;
         emit RemoveRevokableAddress(msg.sender);
