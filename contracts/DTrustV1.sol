@@ -34,6 +34,7 @@ contract DTRUST {
     // Event to log the payouts
     event Paid(address indexed token, address indexed beneficiary, uint256 amount);
     event Revoked();
+    event RemoveRevokableAddress(address indexed revokableAddress);
     event ReceivedEther(address indexed sender, uint256 amount);
     event DepositedEther(address indexed sender, uint256 amount);
 
@@ -162,6 +163,12 @@ contract DTRUST {
                 emit Paid(token, settlor, amount);
             }
         }
+    }
+
+    function removeRevokableAddress() external {
+        require(revokeAddressLookup[msg.sender] == true, "Address is not revokable");
+        revokeAddressLookup[msg.sender] = false;
+        emit RemoveRevokableAddress(msg.sender);
     }
 
     function takeAnnualFee(address _bankWallet, uint256 _feePercentage) external isActive {
