@@ -143,6 +143,7 @@ contract DTRUST {
     }
 
     function payoutRemaining(address[] memory _tokens) external isTrustee {
+        require(isRevoked, "The payout must be revoked, before the remaining balance can be paid out");
         payoutAll(_tokens);
     }
 
