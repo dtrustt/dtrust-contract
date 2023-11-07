@@ -2,6 +2,7 @@
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
+import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
 // Import the ERC-20 interface
 interface IERC20 {
@@ -12,7 +13,7 @@ interface IERC20 {
     function allowance(address owner, address spender) external view returns (uint256);
 }
 
-contract DTRUST {
+contract DTRUST is ReentrancyGuard{
     using SafeMath for uint256;
     address settlor;
     address factoryAddress;
@@ -117,7 +118,7 @@ contract DTRUST {
         address _token,
         uint256 _amount,
         address _beneficiary
-    ) external isTrustee isActive {   
+    ) external isTrustee isActive nonReentrant {   
         require(beneficiariesLookup[_beneficiary] == true, "Beneficiary provided is not a beneficiary of this contract");
         require(IERC20(_token).balanceOf(address(this)) >= _amount, "Not enough balance of the token" );
         require(IERC20(_token).transfer(_beneficiary, _amount), "Token transfer failed");
@@ -125,14 +126,14 @@ contract DTRUST {
         emit Paid(_token, _beneficiary, _amount);
     }
 
-    function revokeContract() external isActive {
+    function revokeContract() external isActive nonReentrant {
         require(revokeAddressLookup[msg.sender] == true, "You do not have permission to revoke");
         payoutAll(tokens);
         isRevoked = true;
         emit Revoked();
     }
 
-    function payoutEth(uint256 _ethAmount,  address _beneficiary) public isTrustee isActive {
+    function payoutEth(uint256 _ethAmount,  address _beneficiary) public isTrustee isActive nonReentrant {
         require(beneficiariesLookup[_beneficiary] == true, "Beneficiary provided is not a beneficiary of this contract");
         require(_ethAmount > 0, "Enter Eth amount > 0");
         require(address(this).balance >= _ethAmount, "Not enough Ether to payout");
@@ -142,7 +143,7 @@ contract DTRUST {
         emit Paid(address(this), _beneficiary, _ethAmount);
     }
 
-    function payoutRemaining(address[] memory _tokens) external isTrustee {
+    function payoutRemaining(address[] memory _tokens) external isTrustee nonReentrant {
         require(isRevoked, "The payout must be revoked, before the remaining balance can be paid out");
         payoutAll(_tokens);
     }
@@ -172,7 +173,7 @@ contract DTRUST {
         emit RemoveRevokableAddress(msg.sender);
     }
 
-    function takeAnnualFee(address _bankWallet, uint256 _feePercentage) external isActive {
+    function takeAnnualFee(address _bankWallet, uint256 _feePercentage) external isActive nonReentrant {
         require(block.timestamp >= startFeeTime, "Not yet time to collect fee");
         require(msg.sender == factoryAddress, "You must be the control wallet");
         
