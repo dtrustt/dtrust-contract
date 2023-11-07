@@ -60,7 +60,7 @@ contract DTRUST is ReentrancyGuard{
         name = _name;
         settlor = _settlor;
         factoryAddress = _factoryAddress;
-        addTrsutees(_trustees);
+        addTrustees(_trustees);
         addBeneficiaries(_beneficiaries);
         addRevokableAddresses(_canRevokeAddresses);
         dateCreated = block.timestamp;
@@ -86,7 +86,7 @@ contract DTRUST is ReentrancyGuard{
         }
     }
 
-    function addTrsutees(address[] memory _trustees) internal {
+    function addTrustees(address[] memory _trustees) internal {
         for (uint i = 0; i < _trustees.length; i++) {
             trusteesLookup[_trustees[i]] = true;
             trustees.push(_trustees[i]);
