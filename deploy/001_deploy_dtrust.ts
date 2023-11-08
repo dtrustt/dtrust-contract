@@ -14,7 +14,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
 	const {deployer } = await getNamedAccounts();
 
 	const deploymentVariables: any[] = [
-		"0x52dCAFA2B5de94801F66A3E665d55DbB287E0Ac3"
+		"0x276C844f2B11423b7e6886990C932ce0c4b3d78D"
 	]
 
 	log(`---------------Contract deployment now beginning--------------------`);
