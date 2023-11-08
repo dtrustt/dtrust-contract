@@ -38,6 +38,7 @@ contract DTRUST is ReentrancyGuard{
     event RemoveRevokableAddress(address indexed revokableAddress);
     event ReceivedEther(address indexed sender, uint256 amount);
     event DepositedEther(address indexed sender, uint256 amount);
+    event DepositedToken(address indexed token, address indexed sender, uint256 amount);
 
     modifier isTrustee() {
         require(trusteesLookup[msg.sender] == true, "Only a trustee can perform this action");
@@ -67,6 +68,7 @@ contract DTRUST is ReentrancyGuard{
         startFeeTime = block.timestamp;
     }
 
+    /// @notice Receives Ether and increments the contract's balance
     receive() external payable {
         etherBalance += msg.value;
         emit DepositedEther(msg.sender, msg.value);
@@ -111,7 +113,9 @@ contract DTRUST is ReentrancyGuard{
         }
 
         // Update the token balance in the mapping
-        IERC20(token).transferFrom(msg.sender, address(this), amount);
+        require(IERC20(token).transferFrom(msg.sender, address(this), amount), "Token transfer failed");
+
+        emit DepositedToken(token, msg.sender, amount);
     }
 
     function payout(
