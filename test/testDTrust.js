@@ -7,10 +7,11 @@ describe("DTRUST Integration", function () {
   let settlor;
   let trustee;
   let beneficiary;
+  let depositor;
 
   beforeEach(async () => {
     // Deploy USDT contract
-    [owner, settlor, trustee, beneficiary, bankWallet] =
+    [owner, settlor, trustee, beneficiary, bankWallet, depositor] =
       await ethers.getSigners();
     const USDT = await ethers.getContractFactory("USDT");
     usdt = await USDT.deploy();
@@ -308,5 +309,125 @@ describe("DTRUST Integration", function () {
     expect(returnedDateCreated).to.be.closeTo((await ethers.provider.getBlock('latest')).timestamp, 10);
     expect(returnedStartFeeTime).to.be.closeTo((await ethers.provider.getBlock('latest')).timestamp, 10);
     expect(returnedIsRevoked).to.equal(false);
+  });
+
+  it("should revert payout if the sender is not a trustee", async function () {
+    // Non-trustee account is neither the settlor, trustee, nor beneficiary
+    const nonTrusteeAccount = accounts[4]; // assuming this is not a trustee
+  
+    // Attempt to execute payout with non-trustee account
+    await expect(
+      dTrust
+        .connect(nonTrusteeAccount)
+        .payout(
+          usdt.address,
+          ethers.utils.parseUnits("10", 18),
+          beneficiary.address
+        )
+    ).to.be.revertedWith("Only a trustee can perform this action");
+  });
+
+  it("should revert payoutEth if the sender is not a trustee", async function () {
+    // Non-trustee account is neither the settlor, trustee, nor beneficiary
+    const nonTrusteeAccount = accounts[4]; // assuming this is not a trustee
+  
+    // Attempt to execute payoutEth with non-trustee account
+    await expect(
+      dTrust
+        .connect(nonTrusteeAccount)
+        .payoutEth(ethers.utils.parseEther("1"), beneficiary.address)
+    ).to.be.revertedWith("Only a trustee can perform this action");
+  });
+
+  it("should revert payoutRemaining if the sender is not a trustee", async function () {
+    // Non-trustee account is neither the settlor, trustee, nor beneficiary
+    const nonTrusteeAccount = accounts[4]; // assuming this is not a trustee
+  
+    // Revoke the trust first to enable payoutRemaining
+    await dTrust.connect(settlor).revokeContract();
+  
+    // Attempt to execute payoutRemaining with non-trustee account
+    await expect(
+      dTrust
+        .connect(nonTrusteeAccount)
+        .payoutRemaining([usdt.address])
+    ).to.be.revertedWith("Only a trustee can perform this action");
+  });
+  it("should revert depositEth if the contract has been revoked", async function () {
+    // Revoke the contract first
+    await dTrust.connect(settlor).revokeContract();
+  
+    // Attempt to deposit Eth to a revoked contract
+    await expect(
+      dTrust
+        .connect(trustee)
+        .depositEth({ value: ethers.utils.parseEther("1") })
+    ).to.be.revertedWith("The contract has been revoked");
+  });
+  it("should revert depositToken if the contract has been revoked", async function () {
+    // Revoke the contract first
+    await dTrust.connect(settlor).revokeContract();
+  
+    // Attempt to deposit tokens to a revoked contract
+    await expect(
+      dTrust
+        .connect(trustee)
+        .depositToken(usdt.address, ethers.utils.parseUnits("1000", 18))
+    ).to.be.revertedWith("The contract has been revoked");
+  });
+  it("should revert payoutEth if the contract has been revoked", async function () {
+    // Revoke the contract first
+    await dTrust.connect(settlor).revokeContract();
+  
+    // Attempt to payout Eth from a revoked contract
+    await expect(
+      dTrust
+        .connect(trustee)
+        .payoutEth(ethers.utils.parseEther("1"), beneficiary.address)
+    ).to.be.revertedWith("The contract has been revoked");
+  });
+  it("should revert removeRevokableAddress if the contract has been revoked", async function () {
+    // Revoke the contract first
+    await dTrust.connect(settlor).revokeContract();
+  
+    // Attempt to remove revokable address from a revoked contract
+    await expect(
+      dTrust
+        .connect(settlor)
+        .removeRevokableAddress()
+    ).to.be.revertedWith("The contract has been revoked");
+  });
+  it("should revert getTrustInfo if the contract has been revoked", async function () {
+    // Revoke the contract first
+    await dTrust.connect(settlor).revokeContract();
+  
+    // Attempt to get trust info from a revoked contract
+    await expect(
+      dTrust
+        .connect(trustee)
+        .getTrustInfo()
+    ).to.be.revertedWith("The contract has been revoked");
+  });
+  it("should fail if deposit amount is 0", async function () {
+    // Attempt to deposit 0 tokens, which should fail
+    await expect(dTrust.connect(depositor).depositToken(usdt.address, 0))
+      .to.be.revertedWith("Enter an amount greater than 0");
+  });
+
+  it("should fail if allowed amount is less than deposit amount", async function () {
+    // Attempt to deposit more tokens than what is allowed, which should fail
+    await expect(dTrust.connect(depositor).depositToken(usdt.address, ethers.utils.parseUnits("200", 18)))
+      .to.be.revertedWith("Contract not approved to move this amount of tokens");
+  });
+
+  it("should fail if deposit ETH amount is 0", async function () {
+    // Attempt to deposit 0 ETH, which should fail
+    await expect(dTrust.connect(depositor).depositEth({ value: 0 }))
+      .to.be.revertedWith("Deposit amount should be greater than 0");
+  });
+  it("should fail if an address without revocation rights tries to remove itself", async function () {
+    // Attempt to remove revocation rights with an account that doesn't have them
+    await expect(dTrust.connect(depositor).removeRevokableAddress())
+      .to.be.revertedWith("Address is not revokable");
   });
 });
