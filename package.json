@@ -20,7 +20,7 @@
     "ethers": "^5.4.7",
     "hardhat": "^2.11.2",
     "hardhat-deploy": "^0.11.15",
-    "hardhat-gas-reporter": "^1.0.8",
+    "hardhat-gas-reporter": "^1.0.9",
     "keccak256": "^1.0.6",
     "merkletreejs": "^0.2.32",
     "prettier": "^2.7.1",

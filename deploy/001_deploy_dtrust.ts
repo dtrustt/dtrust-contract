@@ -1,21 +1,28 @@
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { DeployFunction } from "hardhat-deploy/types";
+import { ethers } from "hardhat";
 import {
 	verify
   } from "../helper-hardhat-config";
 
 const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
 	const {deployments, getNamedAccounts, network} = hre;
-	const {deploy, log} = deployments;
+	const {deploy, log } = deployments;
 
 	const chainId = network.config.chainId as number;
   	log(`Deploying Contract on chain Id #${chainId}`);
 
 	const {deployer } = await getNamedAccounts();
+	const DTRUSTFactory = await ethers.getContractFactory("DTRUSTFactory");
 
-	const deploymentVariables: any[] = [
-		"0x276C844f2B11423b7e6886990C932ce0c4b3d78D"
+	const deploymentVariables: [string] = [
+		"0x276c844f2b11423b7e6886990c932ce0c4b3d78d"
 	]
+	log(`---------------Estimating gas for deployment--------------------`);
+	const deployTransaction = DTRUSTFactory.getDeployTransaction(...deploymentVariables);
+	const estimatedGas = await ethers.provider.estimateGas(deployTransaction);
+	log(`Estimated gas to deploy: ${estimatedGas.toString()}`);
+
 
 	log(`---------------Contract deployment now beginning--------------------`);
 	const dTrustContract = await deploy("DTRUSTFactory", {

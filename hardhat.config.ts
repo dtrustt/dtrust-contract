@@ -35,12 +35,25 @@ const config: HardhatUserConfig  = {
       url: "HTTP://127.0.0.1:7545/",
       chainId: 5777,
     },
+    mainnet: {
+      url: process.env.MAINNET_RPC_URL || "",
+      accounts: process.env.MAINNET_PRIVATE_KEY ? [process.env.MAINNET_PRIVATE_KEY] : [],
+      chainId: 1,
+    },
     // testnets
     sepolia: {
       url: process.env.SEPOLIA_RPC_URL || "",
       accounts: [process.env.SEPOLIA_KEY_ONE || ""],
       chainId: 11155111,
     },
+  },
+  gasReporter: {
+    enabled: true,
+    currency: "USD",
+    outputFile: "gas-report-eth.txt",
+    noColors: true,
+    coinmarketcap: process.env.COINMARKETCAP_API_KEY,
+    token: "ETH",
   },
   namedAccounts: {
     deployer: {
