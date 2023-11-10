@@ -1,0 +1,881 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for contracts/DTrustV1.sol</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">contracts/</a> DTrustV1.sol
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>62/62</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">86.9% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>73/84</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>16/16</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>82/82</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">138×</span>
+<span class="cline-any cline-yes">130×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">48×</span>
+<span class="cline-any cline-yes">48×</span>
+<span class="cline-any cline-yes">48×</span>
+<span class="cline-any cline-yes">48×</span>
+<span class="cline-any cline-yes">48×</span>
+<span class="cline-any cline-yes">48×</span>
+<span class="cline-any cline-yes">47×</span>
+<span class="cline-any cline-yes">47×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">48×</span>
+<span class="cline-any cline-yes">48×</span>
+<span class="cline-any cline-yes">48×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">48×</span>
+<span class="cline-any cline-yes">48×</span>
+<span class="cline-any cline-yes">47×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">48×</span>
+<span class="cline-any cline-yes">49×</span>
+<span class="cline-any cline-yes">49×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">88×</span>
+<span class="cline-any cline-yes">88×</span>
+<span class="cline-any cline-yes">86×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-yes">29×</span>
+<span class="cline-any cline-yes">29×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">29×</span>
+<span class="cline-any cline-yes">25×</span>
+<span class="cline-any cline-yes">25×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+&nbsp;
+import "@openzeppelin/contracts/utils/math/SafeMath.sol";
+import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+&nbsp;
+/// @title ERC-20 interface
+interface IERC20 {
+    function transfer(address to, uint256 amount) external returns (bool);
+    function transferFrom(address from, address to, uint256 amount) external returns (bool);
+    function approve(address spender, uint256 amount) external returns (bool);
+    function balanceOf(address account) external view returns (uint256);
+    function allowance(address owner, address spender) external view returns (uint256);
+}
+&nbsp;
+/// @title DTRUST contract for managing dtrusts
+/// @notice This contract allows for the creation and management of dtrusts
+/// @dev Extends ReentrancyGuard from OpenZeppelin to prevent reentrancy attacks
+contract DTRUST is ReentrancyGuard {
+    using SafeMath for uint256;
+&nbsp;
+    // State variables
+    address settlor;
+    address factoryAddress;
+    address[] trustees;
+    address[] beneficiaries;
+    address[] tokens;
+    string name;
+    bool public isRevoked = false;
+    
+    // Mappings
+    mapping(address =&gt; bool) trusteesLookup;
+    mapping(address =&gt; bool) beneficiariesLookup;
+    mapping(address =&gt; bool) public revokeAddressLookup;
+    mapping(address =&gt; bool) tokenLookup;
+&nbsp;
+    // Balances
+    uint256 etherBalance = 0;
+    uint256 public startFeeTime;
+    uint256 public dateCreated;
+&nbsp;
+    // Events
+    event Paid(address indexed token, address indexed beneficiary, uint256 amount);
+    event Revoked();
+    event RemoveRevokableAddress(address indexed revokableAddress);
+    event ReceivedEther(address indexed sender, uint256 amount);
+    event DepositedEther(address indexed sender, uint256 amount);
+    event DepositedToken(address indexed token, address indexed sender, uint256 amount);
+&nbsp;
+    // Modifiers
+    modifier isTrustee() {
+        require(trusteesLookup[msg.sender], "Only a trustee can perform this action");
+        _;
+    }
+&nbsp;
+    modifier isActive() {
+        require(!isRevoked, "The contract has been revoked");
+        _;
+    }
+&nbsp;
+    /// @notice Constructor to create a DTRUST
+    /// @param _name Name of the dtrust
+    /// @param _settlor Address of the settlor creating the dtrust
+    /// @param _factoryAddress Address of the factory contract creating this dtrust
+    /// @param _trustees Array of addresses of the trustees
+    /// @param _beneficiaries Array of addresses of the beneficiaries
+    /// @param _canRevokeAddresses Array of addresses that can revoke the dtrust
+    constructor(
+        string memory _name,
+        address _settlor,
+        address _factoryAddress,
+        address[] memory _trustees,
+        address[] memory _beneficiaries,
+        address[] memory _canRevokeAddresses
+    ) {
+        name = _name;
+        settlor = _settlor;
+        factoryAddress = _factoryAddress;
+        addTrustees(_trustees);
+        addBeneficiaries(_beneficiaries);
+        addRevokableAddresses(_canRevokeAddresses);
+        dateCreated = block.timestamp;
+        startFeeTime = block.timestamp;
+    }
+&nbsp;
+    /// @notice Fallback function to receive Ether
+    receive() external payable {
+        etherBalance += msg.value;
+        emit DepositedEther(msg.sender, msg.value);
+    }
+&nbsp;
+    /// @notice Internal function to add beneficiaries to the dtrust
+    /// @param _beneficiaries Array of beneficiary addresses
+    function addBeneficiaries(address[] memory _beneficiaries) internal {
+        for (uint i = 0; i &lt; _beneficiaries.length; i++) {
+            beneficiariesLookup[_beneficiaries[i]] = true;
+            beneficiaries.push(_beneficiaries[i]);
+        }
+    }
+&nbsp;
+    /// @notice Internal function to add addresses with revocation rights
+    /// @param _canRevokeAddresses Array of addresses with permission to revoke the dtrust
+    function addRevokableAddresses(address[] memory _canRevokeAddresses) internal {
+        for(uint i = 0; i &lt; _canRevokeAddresses.length; i++) {
+            require(<span class="branch-0 cbranch-no" title="branch not covered" >trusteesLookup[_canRevokeAddresses[i]]</span> || _canRevokeAddresses[i] == settlor, "Address must be a trustee or the settlor");
+            revokeAddressLookup[_canRevokeAddresses[i]] = true;
+        }
+    }
+&nbsp;
+    /// @notice Internal function to add trustees to the dtrust
+    /// @param _trustees Array of trustee addresses
+    function addTrustees(address[] memory _trustees) internal {
+        for (uint i = 0; i &lt; _trustees.length; i++) {
+            trusteesLookup[_trustees[i]] = true;
+            trustees.push(_trustees[i]);
+        }
+    }
+&nbsp;
+    /// @notice Allows a trustee to deposit Ether into the dtrust
+    /// @dev Emits a DepositedEther event upon success
+    function depositEth() external payable isActive { 
+        require(msg.value &gt; 0, "Deposit amount should be greater than 0");
+        etherBalance += msg.value;
+        emit DepositedEther(msg.sender, msg.value);
+    }
+&nbsp;
+    /// @notice Allows a trustee to deposit ERC-20 tokens into the dtrust
+    /// @param token Address of the ERC-20 token
+    /// @param amount Amount of the ERC-20 tokens to deposit
+    /// @dev Emits a DepositedToken event upon success
+    function depositToken(address token, uint256 amount) external isActive { 
+        uint256 allowedAmount = IERC20(token).allowance(msg.sender, address(this));
+        require(amount &gt; 0, "Enter an amount greater than 0");
+        require(allowedAmount &gt;= amount, "Contract not approved to move this amount of tokens");
+        
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (!tokenLookup[token]) {
+            tokenLookup[token] = true;
+            tokens.push(token);
+        }
+&nbsp;
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(IERC20(token).transferFrom(msg.sender, address(this), amount), "Token transfer failed");
+        emit DepositedToken(token, msg.sender, amount);
+    }
+&nbsp;
+    /// @notice Allows trustees to make a payout from the dtrust to a beneficiary
+    /// @param _token Address of the ERC-20 token
+    /// @param _amount Amount of the ERC-20 tokens to payout
+    /// @param _beneficiary Address of the beneficiary to receive the payout
+    /// @dev Emits a Paid event upon success
+    function payout(
+        address _token,
+        uint256 _amount,
+        address _beneficiary
+    ) external isTrustee isActive <span class="missing-if-branch" title="else path not taken" >E</span>nonReentrant {   
+        require(beneficiariesLookup[_beneficiary], "Beneficiary provided is not a beneficiary of this dtrust");
+        require(IERC20(_token).balanceOf(address(this)) &gt;= _amount, "Not enough balance of the token");
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(IERC20(_token).transfer(_beneficiary, _amount), "Token transfer failed");
+        emit Paid(_token, _beneficiary, _amount);
+    }
+&nbsp;
+        /// @notice Revokes the dtrust and performs payouts of remaining balances
+    /// @dev Emits a Revoked event upon successful revocation
+    function revokeContract() external isActive <span class="missing-if-branch" title="else path not taken" >E</span>nonReentrant {
+        require(revokeAddressLookup[msg.sender], "You do not have permission to revoke");
+        payoutAll(tokens);
+        isRevoked = true;
+        emit Revoked();
+    }
+&nbsp;
+    /// @notice Allows trustees to payout Ether from the dtrust to a beneficiary
+    /// @param _ethAmount Amount of Ether to payout
+    /// @param _beneficiary Address of the beneficiary to receive the Ether
+    /// @dev Emits a Paid event upon success
+    function payoutEth(uint256 _ethAmount, address _beneficiary) public isTrustee isActive <span class="missing-if-branch" title="else path not taken" >E</span>nonReentrant {
+        require(beneficiariesLookup[_beneficiary], "Beneficiary provided is not a beneficiary of this dtrust");
+        require(_ethAmount &gt; 0, "Enter Eth amount &gt; 0");
+        require(address(this).balance &gt;= _ethAmount, "Not enough Ether to payout");
+        address payable user = payable(_beneficiary);
+        user.transfer(_ethAmount);
+        etherBalance -= _ethAmount;
+        emit Paid(address(this), _beneficiary, _ethAmount);
+    }
+&nbsp;
+    /// @notice Allows trustees to payout remaining balances after the dtrust has been revoked
+    /// @param _tokens Array of ERC-20 token addresses to be paid out
+    /// @dev Emits Paid events for each token paid out
+    function payoutRemaining(address[] memory _tokens) external isTrustee <span class="missing-if-branch" title="else path not taken" >E</span>nonReentrant {
+        require(isRevoked, "The dtrust must be revoked before the remaining balance can be paid out");
+        payoutAll(_tokens);
+    }
+&nbsp;
+    /// @notice Internal function to payout all balances of Ether and tokens to the settlor
+    /// @param _tokens Array of ERC-20 token addresses to be paid out
+    /// @dev Emits Paid events for each token paid out
+    function payoutAll(address[] memory _tokens) internal {
+        if(address(this).balance &gt; 0){
+            address payable user = payable(settlor);
+            user.transfer(address(this).balance);
+            etherBalance -= address(this).balance;
+            emit Paid(address(this), settlor, address(this).balance);
+        }
+&nbsp;
+        for (uint256 i = 0; i &lt; _tokens.length; i++) {
+            address token = _tokens[i];
+            uint256 amount = IERC20(token).balanceOf(address(this));
+            
+            if(amount &gt; 0){
+                <span class="missing-if-branch" title="else path not taken" >E</span>require(IERC20(token).transfer(settlor, amount), "Token transfer failed");
+                emit Paid(token, settlor, amount);
+            }
+        }
+    }
+&nbsp;
+    /// @notice Allows an address with revocation rights to remove themselves from the list of revokable addresses
+    /// @dev Emits a RemoveRevokableAddress event upon success
+    function removeRevokableAddress() external isActive {
+        require(revokeAddressLookup[msg.sender], "Address is not revokable");
+        revokeAddressLookup[msg.sender] = false;
+        emit RemoveRevokableAddress(msg.sender);
+    }
+&nbsp;
+    /// @notice Collects an annual fee for the dtrust, payable to the bank wallet
+    /// @param _bankWallet Address of the bank wallet where fees are collected
+    /// @param _feePercentage Annual fee percentage
+    /// @dev Emits a Paid event for fee collection
+    function takeAnnualFee(address _bankWallet, uint256 _feePercentage) external isActive <span class="missing-if-branch" title="else path not taken" >E</span>nonReentrant {
+        require(block.timestamp &gt;= startFeeTime, "Not yet time to collect fee");
+        require(msg.sender == factoryAddress, "You must be the control wallet");
+        
+        uint256 feeFraction = _feePercentage.mul(1e14);
+&nbsp;
+        if(address(this).balance &gt; 0 ){
+            uint256 ethFee = address(this).balance.mul(feeFraction).div(1e18);
+            payable(_bankWallet).transfer(ethFee);
+            etherBalance -= ethFee;
+            emit Paid(address(0), _bankWallet, ethFee); // address(0) denotes Ether
+        }
+        
+        for (uint256 i = 0; i &lt; tokens.length; i++) {
+            address token = tokens[i];
+            uint256 tokenBalance = IERC20(token).balanceOf(address(this));
+            if(tokenBalance &gt; 0 ){
+                uint256 tokenFee = tokenBalance.mul(feeFraction).div(1e18);
+                <span class="missing-if-branch" title="else path not taken" >E</span>require(IERC20(token).transfer(_bankWallet, tokenFee), "Token transfer failed");
+                emit Paid(token, _bankWallet, tokenFee);
+            }
+        }
+&nbsp;
+        startFeeTime += 365 days;
+    }
+&nbsp;
+    /// @notice Retrieves information about the dtrust
+    /// @return name of the dtrust
+    /// @return settlor of the dtrust
+    /// @return list of trustees
+    /// @return list of beneficiaries
+    /// @return creation date of the dtrust
+    /// @return start time for the next fee collection
+    /// @return revocation status of the dtrust
+    /// @dev This function is view-only and does not modify state
+    function getTrustInfo() isActive public view returns (
+        string memory,
+        address, 
+        address[] memory, 
+        address[] memory,
+        uint256,
+        uint256,
+        bool
+    ) {
+        return (name, settlor, trustees, beneficiaries, dateCreated, startFeeTime, isRevoked);
+    }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Nov 10 2023 23:08:39 GMT+0500 (GMT+05:00)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>
