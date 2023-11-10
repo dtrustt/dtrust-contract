@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for contracts/DTrustFactory.sol</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">contracts/</a> DTrustFactory.sol
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>14/14</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>2/2</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>7/7</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>16/16</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">138×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">48×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">47×</span>
+<span class="cline-any cline-yes">47×</span>
+<span class="cline-any cline-yes">47×</span>
+<span class="cline-any cline-yes">47×</span>
+<span class="cline-any cline-yes">47×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">94×</span>
+<span class="cline-any cline-yes">95×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">142×</span>
+<span class="cline-any cline-yes">141×</span>
+<span class="cline-any cline-yes">141×</span>
+<span class="cline-any cline-yes">141×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+&nbsp;
+import "./DTrustV1.sol";
+&nbsp;
+/// @title DTRUSTFactory
+/// @notice Factory contract for creating new DTrust contracts
+/// @dev This contract deploys new instances of DTrust and tracks them
+contract DTRUSTFactory {
+    /// Public variable with the address of the bank wallet
+    address public bankWallet;
+&nbsp;
+    /// Fee percentage for the bank; scaled by 100 (e.g., 10 represents 0.10%, 100 represents 1%, 1000 represents 10%)
+    uint256 public bankFee = 10;
+&nbsp;
+    /// Dynamic array of all deployed DTrust contracts
+    address[] public allDTrusts;
+&nbsp;
+    /// Mapping from user addresses to their respective DTrust contracts
+    mapping(address =&gt; address[]) public dTrustsByUser;
+&nbsp;
+    /// Mapping to check if a user has been added to a DTrust contract to prevent duplicates
+    mapping(address =&gt; mapping(address =&gt; bool)) public isUserAddedToDTrust;
+&nbsp;
+    /// Event emitted when a new DTrust contract is created
+    event DTrustCreated(address indexed settlor, address trustAddress);
+&nbsp;
+    /// Event emitted when a user is added to a DTrust contract
+    event UserAddedToDTrust(address indexed user, address trustAddress);
+&nbsp;
+    /// @notice Constructs the DTRUSTFactory and sets the bank wallet address
+    /// @param _bankWallet The address of the bank wallet where fees are collected
+    constructor(address _bankWallet) {
+        bankWallet = _bankWallet;
+    }
+&nbsp;
+    /// @notice Creates a new DTRUST contract and registers the involved parties
+    /// @param _name Name of the dtrust
+    /// @param _settlor Address of the settlor creating the dtrust
+    /// @param _trustees Array of addresses designated as trustees
+    /// @param _beneficiaries Array of addresses designated as beneficiaries
+    /// @param _canRevokeAddresses Array of addresses with permission to revoke the dtrust
+    function createDTRUST(
+        string calldata _name,
+        address _settlor,
+        address[] calldata _trustees,
+        address[] calldata _beneficiaries,
+        address[] calldata _canRevokeAddresses
+    ) external {
+        DTRUST newDTRUST = new DTRUST(
+            _name,
+            _settlor,
+            address(this),
+            _trustees,
+            _beneficiaries,
+            _canRevokeAddresses
+        );
+        allDTrusts.push(address(newDTRUST));
+        addUniqueUser(_settlor, newDTRUST);
+        addUniqueUsers(_trustees, newDTRUST);
+        addUniqueUsers(_beneficiaries, newDTRUST);
+        emit DTrustCreated(_settlor, address(newDTRUST));
+    }
+&nbsp;
+    /// @dev Adds an array of unique users to the internal tracking for a given DTRUST
+    /// @param _users Array of user addresses to be added
+    /// @param newDTRUST Address of the DTRUST contract to which users are added
+    function addUniqueUsers(address[] calldata _users, DTRUST newDTRUST) internal {
+        for (uint i = 0; i &lt; _users.length; i++) {
+            addUniqueUser(_users[i], newDTRUST);
+        }
+    }
+&nbsp;
+    /// @dev Adds a single unique user to the internal tracking for a given DTRUST
+    /// @param _user Address of the user to be added
+    /// @param newDTRUST Address of the DTRUST contract to which the user is added
+    function addUniqueUser(address _user, DTRUST newDTRUST) internal {
+        if (!isUserAddedToDTrust[_user][address(newDTRUST)]) {
+            dTrustsByUser[_user].push(address(newDTRUST));
+            isUserAddedToDTrust[_user][address(newDTRUST)] = true;
+            emit UserAddedToDTrust(_user, address(newDTRUST));
+        }
+    }
+&nbsp;
+    /// @notice Retrieves the DTRUST contracts associated with a given user
+    /// @param _user The address of the user
+    /// @return An array of addresses of DTRUST contracts linked to the user
+    function getDTrustsByUser(address _user) external view returns (address[] memory) {
+        return dTrustsByUser[_user];
+    }
+&nbsp;
+    /// @notice Collects the annual fee for a specified DTRUST contract
+    /// @param dtrustAddress The payable address of the DTRUST contract from which to collect the fee
+    function collectAnnualFeeForTrust(address payable dtrustAddress) external {
+        DTRUST(dtrustAddress).takeAnnualFee(bankWallet, bankFee);
+    }
+&nbsp;
+    /// @notice Returns the total number of DTRUST contracts created by the factory
+    /// @return The count of all DTRUST contracts
+    function getAllDTrustsCount() external view returns (uint256) {
+        return allDTrusts.length;
+    }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Nov 10 2023 23:08:39 GMT+0500 (GMT+05:00)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>
